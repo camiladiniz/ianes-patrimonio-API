@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Ianes Patromonio</display-name>
+    <!-- Spring Framework Dispatcher Servlet Configuration -->
+	<servlet>
+        <servlet-name>springDispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- contextClass - Classe responsável por configurar o spring-->       
+		<init-param>
+	        <param-name>contextClass</param-name>
+	        <!-- spring será configurado através de anotações -->
+	        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	    </init-param>
+	    
+	    <!-- Onde está a classe de configuração do spring -->
+	    <init-param>
+	        <param-name>contextConfigLocation</param-name>
+	        <param-value>br.senai.sp.info.patrimonio.ianes.config.AppConfig</param-value>
+	    </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+	<!-- servlet vai mapear a partir da classe raiz -->
+    <servlet-mapping>
+        <servlet-name>springDispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+	<filter>  
+	    <filter-name>encodingFilter</filter-name>  
+	    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+	    <init-param>  
+	       <param-name>encoding</param-name>  
+	       <param-value>UTF-8</param-value>  
+	    </init-param>  
+	    <init-param>  
+	       <param-name>forceEncoding</param-name>  
+	       <param-value>true</param-value>  
+	    </init-param>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>encodingFilter</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping> 
+	
+</web-app>
